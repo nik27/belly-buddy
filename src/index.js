@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Router } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+import routes from './routes'
+import history from './utils/history'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>Belly Buddy</div>
+    <Router history={history}>{renderRoutes(routes)}</Router>
   </React.StrictMode>,
   document.getElementById('root')
 )
