@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640" height="1368" version="1.1" viewBox="0 0 169.33 361.95" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="filter8628" x="-.17018" y="-.079098" width="1.3404" height="1.1582" color-interpolation-filters="sRGB">
+   <feGaussianBlur stdDeviation="12.007382"/>
+  </filter>
+  <clipPath id="clipPath8644">
+   <rect x=".0090737" y=".01074" width="197.96" height="361.93" ry=".36248" stroke="#000" stroke-width=".28606"/>
+  </clipPath>
+  <clipPath id="clipPath8648">
+   <rect x=".0090737" y=".01074" width="197.96" height="361.93" ry=".36248" stroke="#000" stroke-width=".28606"/>
+  </clipPath>
+ </defs>
+ <g>
+  <path d="m-0.0021492 1.1916s19.644-5.3553 26.791 0c28.742 21.538 10.695 73.29 30.254 103.41 9.3341 14.376 26.449 21.824 39.208 33.269 17.258 15.481 43.376 25.781 50.476 47.852 7.6301 23.717-6.2077 49.767-14.084 73.404-4.2744 12.827-11.346 31.144-7.5317 46.312 5.9093 23.501 44.221 57.7 44.221 57.7h-169.33z" clip-path="url(#clipPath8648)" filter="url(#filter8628)" opacity=".1" style="mix-blend-mode:normal"/>
+  <path d="m-0.0016667 0.0030033s19.644-5.3553 26.791 0c28.742 21.538 10.695 73.29 30.254 103.41 9.3341 14.376 26.449 21.824 39.208 33.269 17.258 15.481 43.376 25.781 50.476 47.852 7.6301 23.717-6.2077 49.767-14.084 73.404-4.2744 12.827-11.346 31.144-7.5317 46.312 5.9093 23.501 44.221 57.7 44.221 57.7h-169.33z" clip-path="url(#clipPath8644)" fill="#f2f1ff" style="mix-blend-mode:normal"/>
+ </g>
+</svg>

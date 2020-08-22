@@ -3,7 +3,7 @@
     "browser": true,
     "es2020": true
   },
-  "extends": ["standard", "prettier", "plugin:react/recommended", "prettier/react", "prettier/standard"],
+  "extends": ["standard", "prettier", "plugin:react/recommended", "prettier/react", "prettier/standard", "plugin:testing-library/react"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,7 +11,7 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "import", "standard"],
+  "plugins": ["prettier", "import", "standard", "testing-library"],
   "rules": {
     "prettier/prettier": "error",
     "space-before-function-paren": "off"
@@ -20,5 +20,16 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

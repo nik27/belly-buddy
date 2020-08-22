@@ -1,5 +1,5 @@
 export const isLoggedIn = () => {
-  return true
+  return false
 }
 
 export const logout = () => {
