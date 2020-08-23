@@ -11,6 +11,9 @@ import RecipePage from './pages/RecipePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import SignUpPage from './pages/SignUpPage'
 import TimelinePage from './pages/TimelinePage'
+import BookmarkedPage from './pages/BookmarkedPage'
+import LikedPage from './pages/LikedPage'
+import NotificationPage from './pages/NotificationPage'
 
 const routes = [
   {
@@ -50,8 +53,43 @@ const routes = [
   },
   {
     component: ApplicationLayout,
-    path: ['/', '/:userId', '/:userId/:recipeId'],
+    path: [
+      '/',
+      '/:userId',
+      '/:userId/:recipeId',
+      '/bookmarked',
+      '/liked',
+      '/notifications'
+    ],
     routes: [
+      {
+        exact: true,
+        path: '/',
+        render: function Timeline() {
+          return isLoggedIn() ? <TimelinePage /> : <Redirect to="/login" />
+        }
+      },
+      {
+        exact: true,
+        path: '/bookmarked',
+        render: function Bookmarked() {
+          return isLoggedIn() ? <BookmarkedPage /> : <Redirect to="/login" />
+        }
+      },
+      {
+        exact: true,
+        path: '/liked',
+        render: function Liked() {
+          return isLoggedIn() ? <LikedPage /> : <Redirect to="/login" />
+        }
+      },
+      {
+        exact: true,
+        path: '/notifications',
+        render: function Notification() {
+          return isLoggedIn() ? <NotificationPage /> : <Redirect to="/login" />
+        }
+      },
       {
         exact: true,
         path: '/:userId',
@@ -64,13 +102,6 @@ const routes = [
         path: '/:userId/:recipeId',
         render: function Recipe() {
           return isLoggedIn() ? <RecipePage /> : <Redirect to="/login" />
-        }
-      },
-      {
-        exact: true,
-        path: '/',
-        render: function Timeline() {
-          return isLoggedIn() ? <TimelinePage /> : <Redirect to="/login" />
         }
       }
     ]

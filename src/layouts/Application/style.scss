@@ -1,0 +1,30 @@
+.app-wrap {
+    background: #f1f7ff !important;
+    background: linear-gradient(#FFF9F1, #f1f7ff) !important;         
+    min-height: 100vh !important;
+}
+
+.app-header {
+    background: none !important;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    margin-top: 50px;    
+}
+
+.app-content {
+    .content-wrap {
+        min-width: 1200px;
+        margin-top: calc(50px + 62.7812px / 2);
+        // background: #f1f7ff;
+        background: #fff;
+        border-radius: 3rem;
+        box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+        0 9px 28px 8px rgba(0, 0, 0, 0.05);
+        padding: 3rem 2rem 1rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
