@@ -3,7 +3,7 @@ import React from 'react'
 import Post from '../../containers/Post'
 import './style.scss'
 
-function Timeline(props) {
+function ExplorePage(props) {
   const user = { id: '1', handle: 'test', name: 'John Doe' }
   const recipe = {
     id: '1',
@@ -23,7 +23,7 @@ function Timeline(props) {
   }
 
   return (
-    <div className="timeline-page">
+    <div className="explore-page">
       <Post recipe={recipe} user={user} />
       <Post recipe={recipe} user={user} />
       <Post recipe={recipe} user={user} />
@@ -36,6 +36,6 @@ function Timeline(props) {
   )
 }
 
-Timeline.propTypes = {}
+ExplorePage.propTypes = {}
 
-export default Timeline
+export default ExplorePage

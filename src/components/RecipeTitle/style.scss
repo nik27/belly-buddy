@@ -1,0 +1,45 @@
+.recipe-title {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 1rem 0;
+    width: 100%;
+
+    .user-wrap {
+        display: flex;position: absolute;
+        top: 1rem;
+        left: 0;
+        flex-flow: row;
+        align-items: center;
+        padding-left: 1rem;
+
+        .user-text {
+            margin-left: .5rem;
+        }
+    }
+
+    .title-wrap {        
+        flex-grow: 1;
+        text-align: center;
+        display: flex;        
+
+        .title-link {
+            flex-grow: 1;
+            margin: 0 1rem;                
+
+            h2.ant-typography {
+                margin-bottom: 0;
+            }
+        }
+
+        .buttons-wrap {
+            position: absolute;
+            top: 1rem;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 1rem;
+        }
+    }
+}

@@ -5,6 +5,7 @@ import { isLoggedIn, logout } from './utils/authentication'
 import ApplicationLayout from './layouts/Application'
 import AuthenticationLayout from './layouts/Authentication'
 
+import AddNewRecipePage from './pages/AddNewRecipePage'
 import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import RecipePage from './pages/RecipePage'
@@ -12,7 +13,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage'
 import SignUpPage from './pages/SignUpPage'
 import TimelinePage from './pages/TimelinePage'
 import BookmarkedPage from './pages/BookmarkedPage'
-import LikedPage from './pages/LikedPage'
+import ExplorePage from './pages/ExplorePage'
 import NotificationPage from './pages/NotificationPage'
 
 const routes = [
@@ -78,9 +79,16 @@ const routes = [
       },
       {
         exact: true,
-        path: '/liked',
-        render: function Liked() {
-          return isLoggedIn() ? <LikedPage /> : <Redirect to="/login" />
+        path: '/explore',
+        render: function Explore() {
+          return isLoggedIn() ? <ExplorePage /> : <Redirect to="/login" />
+        }
+      },
+      {
+        exact: true,
+        path: '/add-new',
+        render: function AddNewRecipe() {
+          return isLoggedIn() ? <AddNewRecipePage /> : <Redirect to="/login" />
         }
       },
       {

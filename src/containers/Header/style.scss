@@ -2,14 +2,12 @@
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     margin: 0 auto;
     border-radius: 3rem;
-    background: #f2f1ff;
     padding: 0;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    
 
     ul {
         background: none;
@@ -18,13 +16,26 @@
         flex-flow: row;
         justify-content: center;
 
-        li {
+        li.notification {            
+            margin: .4rem .5rem !important;
+            background: #f9fbff;
+            text-align: center;
+            top: 0 !important;
             width: 50px;
             height: 50px;
-            border: none !important;
+
+            .anticon {
+                font-size: 1.9rem !important;
+                transition: transform .7s !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        li.list-item {
+            width: 50px;
+            height: 50px;
             margin: .4rem .5rem !important;
-            background: #f2f1ff;
-            border-radius: 100%;
+            background: #f9fbff;
             text-align: center;
             top: 0 !important;
 
@@ -34,23 +45,29 @@
                 margin-right: 0 !important;
             }
 
-            &.ant-menu-item-selected,
-            &.ant-menu-item-active {
+            &.no-select {
+                border: none !important;
+            }
+
+            &.no-select.ant-menu-item-selected,
+            &.no-select.ant-menu-item-active {
                 border: none !important;                
             }
-            &:hover {
-                background: #f2f1ff !important;
-                border: none !important;     
-                top: 0 !important;
 
-                span {
-                    transform: scale(1.4) rotateY(0.5turn);
-                }           
+            &.select:hover {  
+                top: 0 !important;
+            }
+
+            &.no-select:hover {
+                background: #f9fbff !important;
+                border: none !important;     
+                top: 0 !important;        
             }
         }
 
         .profile-avatar {
             line-height: 0;
+            border: none !important;
 
             span {
                 width: 100%;

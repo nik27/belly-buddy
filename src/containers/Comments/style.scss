@@ -1,0 +1,14 @@
+.comments-container-wrap {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1rem 0;
+    background: #fafcff;
+    background: linear-gradient(#fafcff, #fffdfa);
+    border-radius: 0 0 30px 30px;
+
+    .comment-editor-wrap {
+        width: 80%;
+    }
+}
