@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { renderRoutes } from 'react-router-config'
-import { Col, Layout, Row } from 'antd'
+import { BackTop, Col, Layout, Row } from 'antd'
 import './style.scss'
 
 import FooterContent from '../../components/Footer'
-import HeaderContent from '../../components/Header'
+import HeaderContent from '../../containers/Header'
 
 function Application(props) {
   const { route } = props
@@ -13,9 +13,10 @@ function Application(props) {
 
   return (
     <Layout className="app-wrap">
+      <BackTop />
       <Header className="app-header">
         <Row type="flex" justify="center">
-          <Col xs={24} md={20} xxl={10}>
+          <Col xs={24} md={22} xxl={12}>
             <HeaderContent />
           </Col>
         </Row>
