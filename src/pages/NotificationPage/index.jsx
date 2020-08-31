@@ -25,14 +25,18 @@ function NotificationPage() {
   const readNotifications = []
 
   useEffect(() => {
-    dispatch(getNotification())
     for (let i = 0; i < 10; i++) {
       skeletonArray.push(i)
     }
+  }, [])
+
+  useEffect(() => {
+    dispatch(getNotification())
+
     return function cleanup() {
       dispatch(markAsRead(readNotifications))
     }
-  }, [dispatch, readNotifications, skeletonArray])
+  }, [dispatch, readNotifications])
 
   const loadMore = () => {
     const lastTimestamp = initialNotifications.slice(-1).pop().createdAt

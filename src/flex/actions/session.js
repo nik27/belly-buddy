@@ -49,8 +49,8 @@ export const handleSignUp = body => dispatch => {
   return signUp(body)
     .then(res => {
       dispatch({ type: t.SIGN_UP_SUCCESS })
-      history.push('/login')
     })
+    .then(() => history.push('/login'))
     .catch(err => {
       if (
         err.response.data?.error?.code === 'auth/weak-password' ||
