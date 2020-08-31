@@ -4,24 +4,42 @@ import { Upload } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
 function FormImageUpload(props) {
-  const { files } = props
+  const { value = [], imageUpload, onChange, onRemove, isMain } = props
+
+  const triggerChange = changedValue => {
+    if (onChange) {
+      onChange(changedValue)
+    }
+  }
+
+  const handleChange = ({ fileList }) => {
+    triggerChange(fileList)
+  }
 
   return (
-    <ImgCrop grid>
-      <Upload listType="picture-card" fileList={files}>
-        {files.length < 4 && '+ Upload'}
+    <ImgCrop grid aspect={isMain ? 1 / 1 : 12 / 5}>
+      <Upload
+        listType="picture-card"
+        fileList={value}
+        customRequest={imageUpload}
+        onChange={handleChange}
+        onRemove={onRemove}
+        headers={`${isMain}`}
+        accept="image/*">
+        {isMain
+          ? value.length === 0 && '+ Upload'
+          : value.length < 4 && '+ Upload'}
       </Upload>
     </ImgCrop>
   )
 }
 
 FormImageUpload.propTypes = {
-  files: PropTypes.arrayOf(
-    PropTypes.shape({
-      uid: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired
-    })
-  )
+  value: PropTypes.array.isRequired,
+  imageUpload: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  isMain: PropTypes.bool
 }
 
 export default FormImageUpload

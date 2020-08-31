@@ -6,7 +6,7 @@ import './style.scss'
 import RecipeTagList from '../../components/RecipeTagList'
 
 function RecipeHeader(props) {
-  const { user, recipeId, portions, time, title } = props
+  const { user, recipeId, portions, tags, time, title, bookmarkCount } = props
 
   return (
     <Row className="recipe-header" justify="center">
@@ -17,10 +17,11 @@ function RecipeHeader(props) {
           title={title}
           portions={portions}
           time={time}
+          bookmarkCount={bookmarkCount}
         />
       </Col>
-      <Col>
-        <RecipeTagList />
+      <Col xs={24} className="tag-wrap">
+        <RecipeTagList tags={tags} />
       </Col>
     </Row>
   )
@@ -29,9 +30,11 @@ function RecipeHeader(props) {
 RecipeHeader.propTypes = {
   user: PropTypes.instanceOf(Object).isRequired,
   recipeId: PropTypes.string.isRequired,
-  portions: PropTypes.string.isRequired,
+  portions: PropTypes.number.isRequired,
+  tags: PropTypes.array.isRequired,
   time: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  bookmarkCount: PropTypes.number.isRequired
 }
 
 export default RecipeHeader

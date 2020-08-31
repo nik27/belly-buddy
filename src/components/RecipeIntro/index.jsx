@@ -7,7 +7,7 @@ function RecipeIntro(props) {
   const { intro } = props
 
   return (
-    <Col>
+    <Col className="recipe-intro-wrap">
       <Typography.Paragraph>{intro}</Typography.Paragraph>
     </Col>
   )

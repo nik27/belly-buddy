@@ -1,0 +1,8 @@
+export const FETCH_RECIPE_REQUEST = 'timeline/FETCH_REQUEST'
+export const FETCH_RECIPE_SUCCESS = 'timeline/FETCH_SUCCESS'
+export const FETCH_RECIPE_FAILURE = 'timeline/FETCH_FAILURE'
+export const FETCH_RECIPE_NEXT_REQUEST = 'timeline/FETCH_NEXT_REQUEST'
+export const FETCH_RECIPE_NEXT_SUCCESS = 'timeline/FETCH_NEXT_SUCCESS'
+export const FETCH_RECIPE_NEXT_FAILURE = 'timeline/FETCH_NEXT_FAILURE'
+export const UPDATE_LIKE_COUNT = 'timeline/UPDATE_LIKE_COUNT'
+export const UPDATE_BOOKMARK_COUNT = 'timeline/UPDATE_BOOKMARK_COUNT'

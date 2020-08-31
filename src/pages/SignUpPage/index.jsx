@@ -1,7 +1,7 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Card, Form, Input } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, Card, Form, Input, message } from 'antd'
 import {
   UserOutlined,
   LockOutlined,
@@ -9,13 +9,35 @@ import {
   EyeTwoTone,
   MailOutlined
 } from '@ant-design/icons'
+import { handleSignUp, resetSignUpForm } from '../../flex/actions'
+import { getSignUpError, getSignUpLoading } from '../../flex/selectors'
 
-function SignUp(props) {
+function SignUp() {
+  const dispatch = useDispatch()
+  const signUpError = useSelector(state => getSignUpError(state))
+  const signUpLoading = useSelector(state => getSignUpLoading(state))
   const [form] = Form.useForm()
 
   const onFinish = values => {
-    console.log('Finish:', values)
+    dispatch(handleSignUp(values))
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetSignUpForm())
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (signUpLoading) {
+      message.loading('Creating your account')
+    } else {
+      if (signUpError) {
+        console.log(signUpError)
+        message.error(signUpError)
+      }
+    }
+  }, [signUpError, signUpLoading])
 
   return (
     <Card title="Sign Up">
@@ -26,8 +48,8 @@ function SignUp(props) {
         size="large"
         onFinish={onFinish}>
         <Form.Item
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}>
+          name="handle"
+          rules={[{ required: true, message: 'Please input your handle!' }]}>
           <Input
             prefix={
               <>
@@ -35,12 +57,23 @@ function SignUp(props) {
                 &nbsp;@
               </>
             }
-            placeholder="Username"
+            placeholder="Handle"
+          />
+        </Form.Item>
+        <Form.Item
+          name="name"
+          rules={[{ required: true, message: 'Please input your name!' }]}>
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Name"
           />
         </Form.Item>
         <Form.Item
           name="email"
-          rules={[{ required: true, message: 'Please input your email!' }]}>
+          rules={[
+            { required: true, message: 'Please input your email!' },
+            { type: 'email', message: 'Please input valid email!' }
+          ]}>
           <Input
             prefix={
               <>
@@ -69,7 +102,20 @@ function SignUp(props) {
         </Form.Item>
         <Form.Item
           name="confirmPassword"
-          rules={[{ required: true, message: 'Please input your password!' }]}>
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Please input your password!' },
+            ({ getFieldValue }) => ({
+              validator(rule, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve()
+                }
+                return Promise.reject(
+                  'The two passwords that you entered do not match!'
+                )
+              }
+            })
+          ]}>
           <Input.Password
             prefix={
               <>
@@ -84,8 +130,8 @@ function SignUp(props) {
           />
         </Form.Item>
         <Form.Item className="form-buttons">
-          <Button type="primary">
-            <Link to="/sign-up">Sign up</Link>
+          <Button type="primary" htmlType="submit">
+            Sign up
           </Button>
         </Form.Item>
         <Form.Item className="form-link">

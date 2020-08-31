@@ -8,7 +8,7 @@
     background: linear-gradient(#fafcff, #fffdfa);
     border-radius: 0 0 30px 30px;
 
-    .comment-editor-wrap {
+    & > div {
         width: 80%;
     }
 }

@@ -9,18 +9,13 @@ function RecipeDetails(props) {
     <List
       itemLayout="horizontal"
       dataSource={details}
-      renderItem={item => <List.Item>{item.text}</List.Item>}
+      renderItem={item => <List.Item>{item}</List.Item>}
     />
   )
 }
 
 RecipeDetails.propTypes = {
-  details: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    })
-  )
+  details: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default RecipeDetails

@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Card, Form, Input, Space } from 'antd'
 import {
@@ -8,12 +8,14 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone
 } from '@ant-design/icons'
+import { getToken } from '../../flex/actions'
 
-function Login(props) {
+function Login() {
+  const dispatch = useDispatch()
   const [form] = Form.useForm()
 
   const onFinish = values => {
-    console.log('Finish:', values)
+    dispatch(getToken(values))
   }
 
   return (
@@ -25,8 +27,8 @@ function Login(props) {
         size="large"
         onFinish={onFinish}>
         <Form.Item
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}>
+          name="email"
+          rules={[{ required: true, message: 'Please input your email!' }]}>
           <Input
             prefix={
               <>
@@ -34,7 +36,7 @@ function Login(props) {
                 &nbsp;
               </>
             }
-            placeholder="Username"
+            placeholder="Email"
           />
         </Form.Item>
         <Form.Item
@@ -70,7 +72,5 @@ function Login(props) {
     </Card>
   )
 }
-
-Login.propTypes = {}
 
 export default Login

@@ -1,41 +1,103 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, Empty, Typography } from 'antd'
+import { getRecipeExplore, getRecipeExploreNext } from '../../flex/actions'
+import {
+  getExploreRecipeSuper,
+  getExploreLoading,
+  getExploreNextLoading
+} from '../../flex/selectors'
 import Post from '../../containers/Post'
+import PostSkeleton from '../../containers/Post/skeleton'
 import './style.scss'
 
-function ExplorePage(props) {
-  const user = { id: '1', handle: 'test', name: 'John Doe' }
-  const recipe = {
-    id: '1',
-    title: 'Test recipe',
-    portions: '2',
-    time: '60',
-    intro:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi mollitia obcaecati eum, laudantium pariatur, laborum unde vitae nisi nesciunt, reprehenderit id debitis voluptatibus quae sit enim ducimus adipisci veniam necessitatibus culpa ad veritatis suscipit? Corporis reprehenderit accusamus modi nihil culpa.',
-    steps: [
-      { id: '1', text: 'Test step' },
-      { id: '2', text: 'Test step 2' }
-    ],
-    tips: [
-      { id: '1', text: 'Test tip' },
-      { id: '2', text: 'Test tip 2' }
-    ]
+function ExplorePage() {
+  const dispatch = useDispatch()
+  const initialExplore = useSelector(state => getExploreRecipeSuper(state))
+  const isLoading = useSelector(state => getExploreLoading(state))
+  const isNextLoading = useSelector(state => getExploreNextLoading(state))
+
+  useEffect(() => {
+    dispatch(getRecipeExplore())
+  }, [dispatch])
+
+  const loadMore = () => {
+    const lastTimestamp = initialExplore.slice(-1).pop().createdAt
+
+    dispatch(getRecipeExploreNext(lastTimestamp))
   }
 
   return (
     <div className="explore-page">
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
-      <Post recipe={recipe} user={user} />
+      {(isLoading && (
+        <>
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+        </>
+      )) ||
+        (initialExplore &&
+          initialExplore.length > 0 &&
+          initialExplore.map(recipe => (
+            <Post
+              key={recipe.id}
+              recipe={recipe}
+              likeCount={recipe.likeCount}
+              commentCount={recipe.commentCount}
+              bookmarkCount={recipe.bookmarkCount}
+            />
+          ))) || (
+          <Empty className="empty" description={<span></span>}>
+            <>
+              <span>
+                <Typography.Title level={3}>
+                  You are already following everyone!{' '}
+                  <span role="img" aria-label="Tada Emoji">
+                    🎉
+                  </span>
+                </Typography.Title>
+                <br />
+                <Typography.Title level={4}>
+                  Invite more people to use Belly Buddy
+                  <br />{' '}
+                  <span role="img" aria-label="Backhand Index Pointing Down">
+                    🧍‍♀️ 🧍‍♂️ 🧍{' '}
+                  </span>
+                  so all of us could have some new and creative recipes!{' '}
+                  <span role="img" aria-label="Backhand Index Pointing Down">
+                    🧍 🧍‍♂️ 🧍‍♀️{' '}
+                  </span>
+                </Typography.Title>
+              </span>
+              <Link to="/">
+                <Button type="primary" size="large">
+                  Home
+                </Button>
+              </Link>
+            </>
+          </Empty>
+        )}
+      {isNextLoading && (
+        <>
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+        </>
+      )}
+      {initialExplore.length >= 10 && !isNextLoading && (
+        <Button
+          size="large"
+          type="dashed"
+          className="load-more-button"
+          onClick={() => loadMore()}>
+          View More
+        </Button>
+      )}
     </div>
   )
 }
-
-ExplorePage.propTypes = {}
 
 export default ExplorePage

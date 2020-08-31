@@ -4,31 +4,23 @@ import { Link } from 'react-router-dom'
 import { Comment as AntDComment, Avatar } from 'antd'
 
 function Comment(props) {
-  const { children } = props
+  const { userHandle, userName, profilePicture, body, createdAt } = props
 
   return (
     <AntDComment
-      // actions={[<span key="comment-nested-reply-to">Reply to</span>]}
-      author={<Link to="/1">Han Solo</Link>}
-      avatar={
-        <Avatar
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          alt="Han Solo"
-        />
-      }
-      content={
-        <p>
-          We supply a series of design principles, practical patterns and high
-          quality design resources (Sketch and Axure).
-        </p>
-      }>
-      {children}
-    </AntDComment>
+      author={<Link to={`/${userHandle}`}>{userName}</Link>}
+      avatar={<Avatar src={profilePicture} alt={userHandle} />}
+      content={<p>{body}</p>}
+      datetime={new Date(createdAt).toLocaleString()}></AntDComment>
   )
 }
 
 Comment.propTypes = {
-  children: PropTypes.instanceOf(React.Component)
+  userHandle: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  profilePicture: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired
 }
 
 export default Comment

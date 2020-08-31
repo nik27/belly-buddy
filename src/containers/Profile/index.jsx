@@ -5,7 +5,7 @@ import ProfileHeader from '../../components/ProfileHeader'
 import './style.scss'
 
 function ProfileContainer(props) {
-  const { user, recipe } = props
+  const { user, recipes, changeProfilePicture } = props
 
   return (
     <>
@@ -13,12 +13,19 @@ function ProfileContainer(props) {
         handle={user.handle}
         profilePicture={user.profilePicture}
         name={user.name}
+        changeProfilePicture={changeProfilePicture}
       />
       <div className="profile-posts-wrap">
-        <Post user={user} recipe={recipe} />
-        <Post user={user} recipe={recipe} />
-        <Post user={user} recipe={recipe} />
-        <Post user={user} recipe={recipe} />
+        {recipes.length > 0 &&
+          recipes.map(recipe => (
+            <Post
+              key={recipe.id}
+              recipe={recipe}
+              likeCount={recipe.likeCount}
+              commentCount={recipe.commentCount}
+              bookmarkCount={recipe.bookmarkCount}
+            />
+          ))}
       </div>
     </>
   )
@@ -26,7 +33,8 @@ function ProfileContainer(props) {
 
 ProfileContainer.propTypes = {
   user: PropTypes.instanceOf(Object),
-  recipe: PropTypes.instanceOf(Object)
+  recipes: PropTypes.array.isRequired,
+  changeProfilePicture: PropTypes.func.isRequired
 }
 
 export default ProfileContainer

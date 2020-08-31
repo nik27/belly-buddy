@@ -1,34 +1,41 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getRecipe } from '../../flex/actions'
+import {
+  getSelectedRecipe,
+  isSelectedRecipeLoading
+} from '../../flex/selectors'
 import RecipeContainer from '../../containers/Recipe'
+import RecipeContainerSkeleton from '../../containers/Recipe/skeleton'
 import './style.scss'
 
-function Recipe(props) {
-  const user = { id: '1', handle: 'test', name: 'John Doe' }
-  const recipe = {
-    id: '1',
-    title: 'Test recipe',
-    portions: '2',
-    time: '60',
-    intro:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi mollitia obcaecati eum, laudantium pariatur, laborum unde vitae nisi nesciunt, reprehenderit id debitis voluptatibus quae sit enim ducimus adipisci veniam necessitatibus culpa ad veritatis suscipit? Corporis reprehenderit accusamus modi nihil culpa.',
-    steps: [
-      { id: '1', text: 'Test step' },
-      { id: '2', text: 'Test step 2' }
-    ],
-    tips: [
-      { id: '1', text: 'Test tip' },
-      { id: '2', text: 'Test tip 2' }
-    ]
-  }
+function Recipe() {
+  const dispatch = useDispatch()
+  const { recipeId, showComments } = useParams()
+  const recipe = useSelector(state => getSelectedRecipe(state))
+  const isLoading = useSelector(state => isSelectedRecipeLoading(state))
+
+  useEffect(() => {
+    if (recipeId) {
+      dispatch(getRecipe(recipeId))
+    }
+  }, [dispatch, recipeId])
 
   return (
     <div className="recipe-page">
-      <RecipeContainer recipe={recipe} user={user} />
+      {isLoading ? (
+        <RecipeContainerSkeleton show={showComments === 'true'} />
+      ) : (
+        recipe && (
+          <RecipeContainer
+            recipe={recipe}
+            showComments={showComments === 'true'}
+          />
+        )
+      )}
     </div>
   )
 }
-
-Recipe.propTypes = {}
 
 export default Recipe

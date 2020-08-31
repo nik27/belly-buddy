@@ -1,20 +1,28 @@
 .recipe-title {
-    position: relative;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
+    align-items: flex-start;
     padding: 1rem 0;
     width: 100%;
 
     .user-wrap {
-        display: flex;position: absolute;
-        top: 1rem;
-        left: 0;
+        display: flex;
         flex-flow: row;
         align-items: center;
         padding-left: 1rem;
 
-        .user-text {
+        .user-wrap-link {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+
+            .user-text {
+                margin-left: .5rem;
+            }
+        }        
+
+        .follow-button {
             margin-left: .5rem;
         }
     }
@@ -34,12 +42,29 @@
         }
 
         .buttons-wrap {
-            position: absolute;
-            top: 1rem;
-            right: 0;
             display: flex;
             justify-content: space-between;
             padding-right: 1rem;
+        }
+    }
+}
+
+.recipe-title-skeleton {
+    .user-text {
+        margin-left: .5rem;
+        
+        span.ant-skeleton-button {
+            height: .8rem;
+        }
+
+        & span:last-child {
+            margin-top: .5rem;
+        }
+    }
+
+    .title-link {
+        span {
+            width: 60%;
         }
     }
 }

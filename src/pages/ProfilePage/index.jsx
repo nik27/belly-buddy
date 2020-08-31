@@ -1,39 +1,64 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile, getCurrentSessionUser } from '../../flex/actions'
+import {
+  getSelectedProfile,
+  isSelectedProfileLoading
+} from '../../flex/selectors'
+import { uploadProfilePicture } from '../../api/session'
 import ProfileContainer from '../../containers/Profile'
+import ProfileContainerSkeleton from '../../containers/Profile/skeleton'
 import './style.scss'
 
-function Profile(props) {
-  const user = {
-    id: '1',
-    handle: 'test',
-    name: 'John Doe',
-    profilePicture:
-      'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+function Profile() {
+  const dispatch = useDispatch()
+  const { userHandle } = useParams()
+  const profile = useSelector(state => getSelectedProfile(state))
+  const isProfileLoading = useSelector(state => isSelectedProfileLoading(state))
+
+  const changeProfilePicture = async options => {
+    const { onSuccess, onError, file } = options
+
+    const formData = new FormData()
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+
+    formData.append('image', file)
+
+    try {
+      await uploadProfilePicture(formData, config)
+      dispatch(getCurrentSessionUser())
+      dispatch(getProfile(userHandle))
+      onSuccess('Ok')
+    } catch (err) {
+      const error = new Error('Some error')
+      onError({ error })
+    }
   }
-  const recipe = {
-    id: '1',
-    title: 'Test recipe',
-    portions: '2',
-    time: '60',
-    intro:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi mollitia obcaecati eum, laudantium pariatur, laborum unde vitae nisi nesciunt, reprehenderit id debitis voluptatibus quae sit enim ducimus adipisci veniam necessitatibus culpa ad veritatis suscipit? Corporis reprehenderit accusamus modi nihil culpa.',
-    steps: [
-      { id: '1', text: 'Test step' },
-      { id: '2', text: 'Test step 2' }
-    ],
-    tips: [
-      { id: '1', text: 'Test tip' },
-      { id: '2', text: 'Test tip 2' }
-    ]
-  }
+
+  useEffect(() => {
+    if (userHandle) {
+      dispatch(getProfile(userHandle))
+    }
+  }, [dispatch, userHandle])
+
   return (
     <div className="profile-page">
-      <ProfileContainer user={user} recipe={recipe} />
+      {isProfileLoading ? (
+        <ProfileContainerSkeleton />
+      ) : (
+        profile && (
+          <ProfileContainer
+            user={profile.user}
+            recipes={profile.recipes}
+            changeProfilePicture={changeProfilePicture}
+          />
+        )
+      )}
     </div>
   )
 }
-
-Profile.propTypes = {}
 
 export default Profile

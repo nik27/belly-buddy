@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import { Comment, Avatar, Form, Button, Input } from 'antd'
+import { getProfilePicture } from '../../flex/selectors'
 
 function Editor(props) {
   const { submitting, onSubmit, onChange, value } = props
@@ -24,8 +26,8 @@ function Editor(props) {
 }
 
 function CommentEditor(props) {
-  const { submitting, handleSubmit } = props
-  const [value, setValue] = useState('')
+  const { submitting, handleSubmit, value, setValue } = props
+  const profilePicture = useSelector(state => getProfilePicture(state))
 
   const handleChange = e => {
     setValue(e.target.value)
@@ -34,16 +36,11 @@ function CommentEditor(props) {
   return (
     <>
       <Comment
-        avatar={
-          <Avatar
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            alt="Han Solo"
-          />
-        }
+        avatar={<Avatar src={profilePicture} alt="Profile picture" />}
         content={
           <Editor
             onChange={handleChange}
-            onSubmit={handleSubmit}
+            onSubmit={() => handleSubmit(value)}
             submitting={submitting}
             value={value}
           />
@@ -62,7 +59,9 @@ Editor.propTypes = {
 
 CommentEditor.propTypes = {
   submitting: PropTypes.bool.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 }
 
 export default CommentEditor

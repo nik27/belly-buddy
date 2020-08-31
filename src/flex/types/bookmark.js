@@ -1,0 +1,8 @@
+export const FETCH_RECIPE_REQUEST = 'bookmark/FETCH_REQUEST'
+export const FETCH_RECIPE_SUCCESS = 'bookmark/FETCH_SUCCESS'
+export const FETCH_RECIPE_FAILURE = 'bookmark/FETCH_FAILURE'
+export const FETCH_RECIPE_NEXT_REQUEST = 'bookmark/FETCH_NEXT_REQUEST'
+export const FETCH_RECIPE_NEXT_SUCCESS = 'bookmark/FETCH_NEXT_SUCCESS'
+export const FETCH_RECIPE_NEXT_FAILURE = 'bookmark/FETCH_NEXT_FAILURE'
+export const UPDATE_LIKE_COUNT = 'bookmark/UPDATE_LIKE_COUNT'
+export const UPDATE_BOOKMARK_COUNT = 'bookmark/UPDATE_BOOKMARK_COUNT'

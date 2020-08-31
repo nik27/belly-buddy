@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, Col, Divider, Space, Tooltip } from 'antd'
 import {
   CommentOutlined,
@@ -8,10 +10,24 @@ import {
   PieChartTwoTone,
   ClockCircleTwoTone
 } from '@ant-design/icons'
+import { likeRecipe, unlikeRecipe } from '../../flex/actions'
+import { getIsLiked, getIsUsers, isLoadingLike } from '../../flex/selectors'
 import './style.scss'
 
 function RecipeInfo(props) {
-  const { isLiked, recipe } = props
+  const { recipe, likeCount, commentCount, userHandle, selectedRecipe } = props
+  const dispatch = useDispatch()
+  const isLiked = useSelector(state => getIsLiked(state, recipe.id, likeCount))
+  const isUsers = useSelector(state => getIsUsers(state, userHandle))
+  const isLoading = useSelector(state => isLoadingLike(state))
+
+  const toggleLike = () => {
+    if (isLiked) {
+      dispatch(unlikeRecipe(recipe.id, likeCount - 1, selectedRecipe))
+    } else {
+      dispatch(likeRecipe(recipe.id, likeCount + 1, selectedRecipe))
+    }
+  }
 
   return (
     <Col className="recipe-info">
@@ -29,22 +45,29 @@ function RecipeInfo(props) {
             shape="round"
             icon={<ClockCircleTwoTone twoToneColor="#97D191" />}
             size="large">
-            {recipe.time} min
+            {recipe.time}
           </Button>
         </Tooltip>
       </Space>
       <Divider type="vertical" />
       <Space>
         <Tooltip title="View comments" color="#91B7D1" key="comments">
-          <Button
-            shape="round"
-            icon={<CommentOutlined style={{ color: '#91B7D1' }} />}
-            size="large">
-            15
-          </Button>
+          <Link to={`/${userHandle}/${recipe.id}/true`}>
+            <Button
+              shape="round"
+              icon={<CommentOutlined style={{ color: '#91B7D1' }} />}
+              size="large">
+              &nbsp;
+              {commentCount}
+            </Button>
+          </Link>
         </Tooltip>
         <Tooltip
-          title={`${isLiked ? 'Unlike' : 'Like'} this recipe`}
+          title={
+            isUsers
+              ? 'Number of likes'
+              : `${isLiked ? 'Unlike' : 'Like'} this recipe`
+          }
           color="#FF4E50"
           key="like">
           <Button
@@ -56,8 +79,11 @@ function RecipeInfo(props) {
                 <HeartOutlined style={{ color: '#FF4E50' }} />
               )
             }
-            size="large">
-            29
+            size="large"
+            onClick={isUsers ? null : () => toggleLike()}
+            loading={isLoading}>
+            &nbsp;
+            {likeCount}
           </Button>
         </Tooltip>
       </Space>
@@ -66,8 +92,15 @@ function RecipeInfo(props) {
 }
 
 RecipeInfo.propTypes = {
-  isLiked: PropTypes.bool.isRequired,
-  recipe: PropTypes.instanceOf(Object).isRequired
+  recipe: PropTypes.instanceOf(Object).isRequired,
+  likeCount: PropTypes.number.isRequired,
+  commentCount: PropTypes.number.isRequired,
+  userHandle: PropTypes.string.isRequired,
+  selectedRecipe: PropTypes.bool
+}
+
+RecipeInfo.defaultProps = {
+  selectedRecipe: false
 }
 
 export default RecipeInfo

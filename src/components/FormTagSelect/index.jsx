@@ -3,26 +3,31 @@ import PropTypes from 'prop-types'
 import { Select, Tag } from 'antd'
 
 function TagRender(props) {
-  const { label, value, onClose } = props
-
+  const { value, onClose } = props
   return (
-    <Tag color={value} closable onClose={onClose} style={{ marginRight: 3 }}>
-      {label}
+    <Tag closable onClose={onClose} style={{ marginRight: 3 }}>
+      {value}
     </Tag>
   )
 }
 
 function FormTagSelect(props) {
-  const { options } = props
+  const { options, value = [], onChange } = props
   const [selectedItems, setSelectedItems] = useState([])
 
   const filteredOptions = options.filter(
     option => !selectedItems.includes(option.value)
   )
 
+  const triggerChange = changedValue => {
+    if (onChange) {
+      onChange([...value, ...changedValue])
+    }
+  }
+
   const handleChange = selectedItems => {
-    console.log(selectedItems)
     setSelectedItems(selectedItems)
+    triggerChange(selectedItems)
   }
 
   return (
@@ -48,9 +53,12 @@ TagRender.propTypes = {
 }
 
 FormTagSelect.propTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.array,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string
+      value: PropTypes.string,
+      label: PropTypes.string
     })
   )
 }

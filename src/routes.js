@@ -56,9 +56,10 @@ const routes = [
     component: ApplicationLayout,
     path: [
       '/',
-      '/:userId',
-      '/:userId/:recipeId',
-      '/bookmarked',
+      '/:userHandle',
+      '/:userHandle/:recipeId',
+      '/:userHandle/:recipeId/:showComments',
+      '/saved',
       '/liked',
       '/notifications'
     ],
@@ -72,7 +73,7 @@ const routes = [
       },
       {
         exact: true,
-        path: '/bookmarked',
+        path: '/saved',
         render: function Bookmarked() {
           return isLoggedIn() ? <BookmarkedPage /> : <Redirect to="/login" />
         }
@@ -100,14 +101,17 @@ const routes = [
       },
       {
         exact: true,
-        path: '/:userId',
+        path: '/:userHandle',
         render: function Profile() {
           return isLoggedIn() ? <ProfilePage /> : <Redirect to="/login" />
         }
       },
       {
         exact: true,
-        path: '/:userId/:recipeId',
+        path: [
+          '/:userHandle/:recipeId',
+          '/:userHandle/:recipeId/:showComments'
+        ],
         render: function Recipe() {
           return isLoggedIn() ? <RecipePage /> : <Redirect to="/login" />
         }

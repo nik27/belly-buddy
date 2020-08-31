@@ -2,22 +2,9 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { AutoComplete, Input } from 'antd'
 import './style.scss'
-import { SearchOutlined, UserOutlined } from '@ant-design/icons'
+import { SearchOutlined } from '@ant-design/icons'
 
-const renderTitle = title => (
-  <span>
-    {title}
-    <a
-      style={{
-        float: 'right'
-      }}
-      href="https://www.google.com/search?q=antd"
-      target="_blank"
-      rel="noopener noreferrer">
-      more
-    </a>
-  </span>
-)
+const renderTitle = title => <span>{title}</span>
 
 const renderItem = (title, count) => ({
   value: title,
@@ -28,9 +15,6 @@ const renderItem = (title, count) => ({
         justifyContent: 'space-between'
       }}>
       {title}
-      <span>
-        <UserOutlined /> {count}
-      </span>
     </div>
   )
 })
@@ -38,18 +22,11 @@ const renderItem = (title, count) => ({
 const options = [
   {
     label: renderTitle('Recipes'),
-    options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)]
+    options: [renderItem('Recipe 1'), renderItem('Recipe 2')]
   },
   {
     label: renderTitle('Users'),
-    options: [
-      renderItem('AntDesign UI FAQ', 60100),
-      renderItem('AntDesign FAQ', 30010)
-    ]
-  },
-  {
-    label: renderTitle('Tags'),
-    options: [renderItem('AntDesign design language', 100000)]
+    options: [renderItem('User 1'), renderItem('User 2')]
   }
 ]
 
