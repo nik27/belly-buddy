@@ -1,0 +1,17 @@
+.notification-wrap {
+    padding: 0 .5rem !important;
+    justify-content: flex-start !important;
+
+    & > * {
+        padding: 12px 0;
+    }
+
+    .test {
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        padding: 0 .5rem;
+    }
+
+    .notification-details {
+        margin-left: .5rem;
+    }
+}

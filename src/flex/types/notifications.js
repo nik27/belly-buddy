@@ -1,0 +1,7 @@
+export const FETCH_NOTIFICATION_REQUEST = 'notification/FETCH_REQUEST'
+export const FETCH_NOTIFICATION_SUCCESS = 'notification/FETCH_SUCCESS'
+export const FETCH_NOTIFICATION_FAILURE = 'notification/FETCH_FAILURE'
+export const FETCH_NOTIFICATION_NEXT_REQUEST = 'notification/FETCH_NEXT_REQUEST'
+export const FETCH_NOTIFICATION_NEXT_SUCCESS = 'notification/FETCH_NEXT_SUCCESS'
+export const FETCH_NOTIFICATION_NEXT_FAILURE = 'notification/FETCH_NEXT_FAILURE'
+export const MARK_AS_READ = 'notification/READ'

@@ -1,0 +1,54 @@
+.auth-wrapper {
+    height: 100vh;
+    
+    background: #f1f7ff !important;
+    background: url('../../assets/images/ilust-1.svg') bottom right 1% / auto 40% no-repeat, linear-gradient(#FFF9F1, #f1f7ff) !important;
+
+
+    .auth-row {
+        height: 100vh;    
+    }
+
+    .auth-col {
+        background: #f2f1ff;
+    }
+
+    .form-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auth-wave {
+        background-image: url('../../assets/images/wave.svg') !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-position: top right;
+    }
+
+    .ant-card {
+        min-width: 60%;
+        background: #FFF9F1;
+        background: linear-gradient(#FFF9F1, #f1f7ff);
+        
+        .ant-card-head {
+            font-size: 2rem;
+            text-align: center;
+            border-bottom: 0;
+        }
+
+        .form-buttons {
+            text-align: center;
+        }
+
+        .form-link {
+            text-align: center;
+            margin: 0;
+        }
+    }
+}
+
+.auth-footer {
+    background: rgba(0, 0, 0, 0) !important;
+    z-index: 1;
+}

@@ -1,0 +1,29 @@
+.form-items-inline {
+    display: flex;
+    justify-content: center;
+    & > div {
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+}
+
+.form-dynamic-fields {
+    .add-new-form-dynamic-input {
+        width: 90% !important;
+    }
+
+    .ant-form-item-control-input-content {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .form-item-label {
+        text-transform: capitalize;
+    }
+}
+
+.ant-upload-picture-card-wrapper {
+    display: flex !important;
+    justify-content: flex-end !important;
+}

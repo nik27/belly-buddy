@@ -1,0 +1,11 @@
+.recipe-info {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: .5rem 1rem;
+
+    .ant-divider-vertical {
+        height: auto;
+    }
+}

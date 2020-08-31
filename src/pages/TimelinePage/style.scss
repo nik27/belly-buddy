@@ -1,0 +1,17 @@
+.timeline-page {
+    padding: 1rem 2rem;
+    width: 100%;
+    min-height: 70vh;
+    text-align: center;
+
+    .load-more-button {
+        margin: 2rem 0;
+    }
+
+    .empty {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        height: 100%;
+    }
+}

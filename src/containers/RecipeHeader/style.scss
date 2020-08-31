@@ -1,0 +1,11 @@
+.recipe-header {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+
+    .tag-wrap {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-end;
+    }
+}
