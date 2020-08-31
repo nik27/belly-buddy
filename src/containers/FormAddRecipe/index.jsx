@@ -139,9 +139,16 @@ function FormAddRecipeContainer() {
 
   const onRemove = file => {
     const toRemove = tempFiles.find(el => el.uid === file.uid)
-    setTempFiles(tempFiles.filter(el => el.uid !== toRemove.uid))
+
     if (toRemove) {
+      setTempFiles(tempFiles.filter(el => el.uid !== toRemove.uid))
       deleteRecipeImage(toRemove.name)
+    } else {
+      const mainRemove = mainFiles.find(el => el.uid === file.uid)
+      if (mainRemove) {
+        setMainFiles([])
+        deleteRecipeImage(mainRemove)
+      }
     }
   }
 
