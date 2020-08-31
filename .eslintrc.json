@@ -3,7 +3,7 @@
     "browser": true,
     "es2020": true
   },
-  "extends": ["standard", "prettier", "plugin:react/recommended", "prettier/react", "prettier/standard", "plugin:testing-library/react"],
+  "extends": ["standard", "prettier", "plugin:react/recommended", "plugin:react-hooks/recommended", "prettier/react", "prettier/standard", "plugin:testing-library/react"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

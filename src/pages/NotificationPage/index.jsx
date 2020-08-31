@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Badge, Button, Empty, List, Skeleton, Typography } from 'antd'
@@ -22,12 +22,13 @@ function NotificationPage() {
   const isLoading = useSelector(state => getNotificationLoading(state))
   const isNextLoading = useSelector(state => getNotificationNextLoading(state))
   const skeletonArray = []
-  const readNotifications = []
+  const [readNotifications, setReadNotifications] = useState([])
 
   useEffect(() => {
     for (let i = 0; i < 10; i++) {
       skeletonArray.push(i)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -46,7 +47,7 @@ function NotificationPage() {
 
   const markNotification = notification => {
     if (!notification.read) {
-      readNotifications.push(notification.id)
+      setReadNotifications([notification.id, ...readNotifications])
     }
   }
 
