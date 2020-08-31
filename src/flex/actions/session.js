@@ -49,6 +49,7 @@ export const handleSignUp = body => dispatch => {
   return signUp(body)
     .then(res => {
       dispatch({ type: t.SIGN_UP_SUCCESS })
+      history.push('/login')
     })
     .catch(err => {
       if (
@@ -62,7 +63,6 @@ export const handleSignUp = body => dispatch => {
       } else {
         dispatch({ type: t.SIGN_UP_FAIL, payload: err.response.data.message })
       }
-      console.log(err.response.data)
     })
 }
 
