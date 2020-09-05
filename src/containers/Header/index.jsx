@@ -12,7 +12,6 @@ import {
 import { markAsRead } from '../../redux/actions'
 import history from '../../utils/history'
 import NotificationMenu from '../../components/NotificationMenu'
-import SearchBarContainer from '../SearchBar'
 import './style.scss'
 
 function HeaderContainer(props) {
