@@ -2,18 +2,19 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Empty, Typography } from 'antd'
-import { getRecipeExplore, getRecipeExploreNext } from '../../flex/actions'
+import { getRecipeExplore, getRecipeExploreNext } from '../../redux/actions'
 import {
   getExploreRecipeSuper,
   getExploreLoading,
   getExploreNextLoading
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import Post from '../../containers/Post'
 import PostSkeleton from '../../containers/Post/skeleton'
 import './style.scss'
 
 function ExplorePage() {
   const dispatch = useDispatch()
+  const category = 'explore'
   const initialExplore = useSelector(state => getExploreRecipeSuper(state))
   const isLoading = useSelector(state => getExploreLoading(state))
   const isNextLoading = useSelector(state => getExploreNextLoading(state))
@@ -47,6 +48,7 @@ function ExplorePage() {
               likeCount={recipe.likeCount}
               commentCount={recipe.commentCount}
               bookmarkCount={recipe.bookmarkCount}
+              category={category}
             />
           ))) || (
           <Empty className="empty" description={<span></span>}>

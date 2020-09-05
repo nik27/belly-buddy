@@ -8,7 +8,7 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone
 } from '@ant-design/icons'
-import { getToken } from '../../flex/actions'
+import { getToken } from '../../redux/actions'
 
 function Login() {
   const dispatch = useDispatch()

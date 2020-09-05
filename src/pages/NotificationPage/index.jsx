@@ -7,12 +7,12 @@ import {
   getNotification,
   getNotificationNext,
   markAsRead
-} from '../../flex/actions'
+} from '../../redux/actions'
 import {
   getNotificationSuper,
   getNotificationLoading,
   getNotificationNextLoading
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import NotificationListItem from '../../components/NotificationListItem'
 import './style.scss'
 

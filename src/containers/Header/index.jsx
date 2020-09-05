@@ -9,7 +9,7 @@ import {
   PlusOutlined,
   ExperimentTwoTone
 } from '@ant-design/icons'
-import { markAsRead } from '../../flex/actions'
+import { markAsRead } from '../../redux/actions'
 import history from '../../utils/history'
 import NotificationMenu from '../../components/NotificationMenu'
 import SearchBarContainer from '../SearchBar'
@@ -97,9 +97,7 @@ function HeaderContainer(props) {
           </Link>
         </Menu.Item>
       </Menu>
-      <div className="search-wrap">
-        <SearchBarContainer />
-      </div>
+      <div className="search-wrap">{/* <SearchBarContainer /> */}</div>
       <Menu
         mode="horizontal"
         selectedKeys={[`${pathname}`]}

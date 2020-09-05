@@ -10,13 +10,13 @@ import {
   followUser,
   unfollowUser,
   recipeDelete
-} from '../../flex/actions'
+} from '../../redux/actions'
 import {
   getIsBookmarked,
   getIsUsers,
   getIsFollowed,
   isLoadingFollow
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import './style.scss'
 
 function RecipeTitle(props) {

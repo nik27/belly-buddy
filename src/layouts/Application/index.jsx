@@ -8,12 +8,12 @@ import {
   getUserInLocalStorage,
   getTags,
   getNotification
-} from '../../flex/actions'
+} from '../../redux/actions'
 import {
   getCurrentUserHandle,
   getProfilePicture,
   getNotificationSuper
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import { isLoggedIn } from '../../utils/authentication'
 import { get } from '../../utils/storage'
 import './style.scss'

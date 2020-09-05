@@ -10,12 +10,19 @@ import {
   PieChartTwoTone,
   ClockCircleTwoTone
 } from '@ant-design/icons'
-import { likeRecipe, unlikeRecipe } from '../../flex/actions'
-import { getIsLiked, getIsUsers, isLoadingLike } from '../../flex/selectors'
+import { likeRecipe, unlikeRecipe } from '../../redux/actions'
+import { getIsLiked, getIsUsers, isLoadingLike } from '../../redux/selectors'
 import './style.scss'
 
 function RecipeInfo(props) {
-  const { recipe, likeCount, commentCount, userHandle, selectedRecipe } = props
+  const {
+    recipe,
+    likeCount,
+    commentCount,
+    userHandle,
+    selectedRecipe,
+    category
+  } = props
   const dispatch = useDispatch()
   const isLiked = useSelector(state => getIsLiked(state, recipe.id, likeCount))
   const isUsers = useSelector(state => getIsUsers(state, userHandle))
@@ -23,9 +30,9 @@ function RecipeInfo(props) {
 
   const toggleLike = () => {
     if (isLiked) {
-      dispatch(unlikeRecipe(recipe.id, likeCount - 1, selectedRecipe))
+      dispatch(unlikeRecipe(recipe.id, likeCount - 1, selectedRecipe, category))
     } else {
-      dispatch(likeRecipe(recipe.id, likeCount + 1, selectedRecipe))
+      dispatch(likeRecipe(recipe.id, likeCount + 1, selectedRecipe, category))
     }
   }
 
@@ -96,7 +103,8 @@ RecipeInfo.propTypes = {
   likeCount: PropTypes.number.isRequired,
   commentCount: PropTypes.number.isRequired,
   userHandle: PropTypes.string.isRequired,
-  selectedRecipe: PropTypes.bool
+  selectedRecipe: PropTypes.bool,
+  category: PropTypes.string.isRequired
 }
 
 RecipeInfo.defaultProps = {

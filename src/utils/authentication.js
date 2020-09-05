@@ -1,4 +1,4 @@
-import { persistor } from '../flex'
+import { persistor } from '../redux'
 import { clear, get } from './storage'
 
 export const isLoggedIn = () => {

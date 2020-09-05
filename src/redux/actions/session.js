@@ -92,7 +92,7 @@ export const getUserInLocalStorage = () => (dispatch, getState) => {
 }
 
 export const getProfile = userHandle => dispatch => {
-  dispatch({ type: t.PROFILE_REQUEST })
+  dispatch({ type: t.PROFILE_REQUEST, payload: true })
   return getSelectedProfile(userHandle)
     .then(res => dispatch({ type: t.SET_SELECTED_PROFILE, payload: res.data }))
     .catch(() => {
@@ -116,6 +116,10 @@ export const getRecipe = recipeId => dispatch => {
     })
 }
 
+export const clearSelectedRecipe = () => dispatch => {
+  dispatch({ type: t.RECIPE_WIPE })
+}
+
 export const likeRecipe = (
   recipeId,
   count,
@@ -137,18 +141,23 @@ export const likeRecipe = (
         case 'explore':
           type = exploreTypes
           break
+        case 'profile':
+          type = t
+          break
         default:
-          type = timelineTypes
+          type = t
       }
 
       dispatch({ type: t.LIKE_RECIPE, payload: recipeId })
-      dispatch({
-        type: type.UPDATE_LIKE_COUNT,
-        payload: { id: recipeId, count: count }
-      })
+
       if (selectedRecipe) {
         dispatch({
-          type: t.UPDATE_LIKE_COUNT,
+          type: t.UPDATE_SELECTED_RECIPE_LIKE_COUNT,
+          payload: { id: recipeId, count: count }
+        })
+      } else {
+        dispatch({
+          type: type.UPDATE_LIKE_COUNT,
           payload: { id: recipeId, count: count }
         })
       }
@@ -179,18 +188,23 @@ export const unlikeRecipe = (
         case 'explore':
           type = exploreTypes
           break
+        case 'profile':
+          type = t
+          break
         default:
-          type = timelineTypes
+          type = t
       }
 
       dispatch({ type: t.UNLIKE_RECIPE, payload: recipeId })
-      dispatch({
-        type: type.UPDATE_LIKE_COUNT,
-        payload: { id: recipeId, count: count }
-      })
+
       if (selectedRecipe) {
         dispatch({
-          type: t.UPDATE_LIKE_COUNT,
+          type: t.UPDATE_SELECTED_RECIPE_LIKE_COUNT,
+          payload: { id: recipeId, count: count }
+        })
+      } else {
+        dispatch({
+          type: type.UPDATE_LIKE_COUNT,
           payload: { id: recipeId, count: count }
         })
       }

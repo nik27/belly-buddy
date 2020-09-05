@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Empty, Typography } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
-import { getRecipeBookmark, getRecipeBookmarkNext } from '../../flex/actions'
+import { getRecipeBookmark, getRecipeBookmarkNext } from '../../redux/actions'
 import {
   getBookmarkRecipeSuper,
   getBookmarkLoading,
   getBookmarkNextLoading
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import Post from '../../containers/Post'
 import PostSkeleton from '../../containers/Post/skeleton'
 import './style.scss'
 
 function BookmarkedPage() {
   const dispatch = useDispatch()
+  const category = 'bookmark'
   const initialBookmark = useSelector(state => getBookmarkRecipeSuper(state))
   const isLoading = useSelector(state => getBookmarkLoading(state))
   const isNextLoading = useSelector(state => getBookmarkNextLoading(state))
@@ -48,6 +49,7 @@ function BookmarkedPage() {
               likeCount={recipe.likeCount}
               commentCount={recipe.commentCount}
               bookmarkCount={recipe.bookmarkCount}
+              category={category}
             />
           ))) || (
           <Empty className="empty" description={<span></span>}>

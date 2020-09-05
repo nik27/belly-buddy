@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Image, Tooltip, Typography, Upload } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
-import { followUser, unfollowUser } from '../../flex/actions'
+import { followUser, unfollowUser } from '../../redux/actions'
 import {
   getIsFollowed,
   getIsUsers,
   isLoadingFollow
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import ImgCrop from 'antd-img-crop'
 import './style.scss'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { Comment, Avatar, Form, Button, Input } from 'antd'
-import { getProfilePicture } from '../../flex/selectors'
+import { getProfilePicture } from '../../redux/selectors'
 
 function Editor(props) {
   const { submitting, onSubmit, onChange, value } = props

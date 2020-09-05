@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getRecipe } from '../../flex/actions'
+import { getRecipe, clearSelectedRecipe } from '../../redux/actions'
 import {
   getSelectedRecipe,
   isSelectedRecipeLoading
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import RecipeContainer from '../../containers/Recipe'
 import RecipeContainerSkeleton from '../../containers/Recipe/skeleton'
 import './style.scss'
@@ -19,6 +19,9 @@ function Recipe() {
   useEffect(() => {
     if (recipeId) {
       dispatch(getRecipe(recipeId))
+    }
+    return () => {
+      dispatch(clearSelectedRecipe())
     }
   }, [dispatch, recipeId])
 

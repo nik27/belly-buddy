@@ -2,18 +2,19 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Empty, Typography } from 'antd'
-import { getRecipeTimeline, getRecipeTimelineNext } from '../../flex/actions'
+import { getRecipeTimeline, getRecipeTimelineNext } from '../../redux/actions'
 import {
   getTimelineRecipeSuper,
   getTimelineLoading,
   getTimelineNextLoading
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import Post from '../../containers/Post'
 import PostSkeleton from '../../containers/Post/skeleton'
 import './style.scss'
 
 function Timeline() {
   const dispatch = useDispatch()
+  const category = 'timeline'
   const initialTimeline = useSelector(state => getTimelineRecipeSuper(state))
   const isLoading = useSelector(state => getTimelineLoading(state))
   const isNextLoading = useSelector(state => getTimelineNextLoading(state))
@@ -47,6 +48,7 @@ function Timeline() {
               likeCount={recipe.likeCount}
               commentCount={recipe.commentCount}
               bookmarkCount={recipe.bookmarkCount}
+              category={category}
             />
           ))) || (
           <Empty className="empty" description={<span></span>}>

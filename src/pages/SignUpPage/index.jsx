@@ -9,8 +9,8 @@ import {
   EyeTwoTone,
   MailOutlined
 } from '@ant-design/icons'
-import { handleSignUp, resetSignUpForm } from '../../flex/actions'
-import { getSignUpError, getSignUpLoading } from '../../flex/selectors'
+import { handleSignUp, resetSignUpForm } from '../../redux/actions'
+import { getSignUpError, getSignUpLoading } from '../../redux/selectors'
 
 function SignUp() {
   const dispatch = useDispatch()

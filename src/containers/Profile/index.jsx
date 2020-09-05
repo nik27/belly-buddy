@@ -5,7 +5,7 @@ import ProfileHeader from '../../components/ProfileHeader'
 import './style.scss'
 
 function ProfileContainer(props) {
-  const { user, recipes, changeProfilePicture } = props
+  const { user, recipes, changeProfilePicture, category } = props
 
   return (
     <>
@@ -24,6 +24,7 @@ function ProfileContainer(props) {
               likeCount={recipe.likeCount}
               commentCount={recipe.commentCount}
               bookmarkCount={recipe.bookmarkCount}
+              category={category}
             />
           ))}
       </div>
@@ -34,7 +35,8 @@ function ProfileContainer(props) {
 ProfileContainer.propTypes = {
   user: PropTypes.instanceOf(Object),
   recipes: PropTypes.array.isRequired,
-  changeProfilePicture: PropTypes.func.isRequired
+  changeProfilePicture: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired
 }
 
 export default ProfileContainer

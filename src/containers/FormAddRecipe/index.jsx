@@ -16,12 +16,12 @@ import {
 } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { uploadRecipeImage, deleteRecipeImage } from '../../api/recipe'
-import { addNewRecipe } from '../../flex/actions'
+import { addNewRecipe } from '../../redux/actions'
 import {
   getTags,
   isCreateRecipeLoading,
   getCurrentUserHandle
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import history from '../../utils/history'
 import FormTagSelect from '../../components/FormTagSelect'
 import DynamicFields from '../../components/FormDynamicFields'

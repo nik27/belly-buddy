@@ -7,7 +7,7 @@ import RecipeHeader from '../RecipeHeader'
 import RecipeIntro from '../../components/RecipeIntro'
 
 function Post(props) {
-  const { recipe, likeCount, commentCount, bookmarkCount } = props
+  const { recipe, likeCount, commentCount, bookmarkCount, category } = props
 
   return (
     <div className="post-wrap">
@@ -37,6 +37,7 @@ function Post(props) {
             likeCount={likeCount}
             commentCount={commentCount}
             userHandle={recipe.userHandle}
+            category={category}
           />
         </Row>
       </div>
@@ -48,7 +49,8 @@ Post.propTypes = {
   recipe: PropTypes.instanceOf(Object).isRequired,
   likeCount: PropTypes.number.isRequired,
   commentCount: PropTypes.number.isRequired,
-  bookmarkCount: PropTypes.number.isRequired
+  bookmarkCount: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired
 }
 
 export default Post

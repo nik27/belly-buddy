@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProfile, getCurrentSessionUser } from '../../flex/actions'
+import { getProfile, getCurrentSessionUser } from '../../redux/actions'
 import {
   getSelectedProfile,
   isSelectedProfileLoading
-} from '../../flex/selectors'
+} from '../../redux/selectors'
 import { uploadProfilePicture } from '../../api/session'
 import ProfileContainer from '../../containers/Profile'
 import ProfileContainerSkeleton from '../../containers/Profile/skeleton'
@@ -13,6 +13,7 @@ import './style.scss'
 
 function Profile() {
   const dispatch = useDispatch()
+  const category = 'profile'
   const { userHandle } = useParams()
   const profile = useSelector(state => getSelectedProfile(state))
   const isProfileLoading = useSelector(state => isSelectedProfileLoading(state))
@@ -54,6 +55,7 @@ function Profile() {
             user={profile.user}
             recipes={profile.recipes}
             changeProfilePicture={changeProfilePicture}
+            category={category}
           />
         )
       )}

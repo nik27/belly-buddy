@@ -78,6 +78,11 @@ export default function session(state = initialState, action) {
         selectedRecipeLoading: false,
         selectedRecipe: payload
       }
+    case t.RECIPE_WIPE:
+      return {
+        ...state,
+        selectedRecipe: null
+      }
     case t.LIKE_RECIPE:
       return {
         ...state,
@@ -108,6 +113,14 @@ export default function session(state = initialState, action) {
               likeCount: payload.count
             }
           ]
+        }
+      }
+    case t.UPDATE_SELECTED_RECIPE_LIKE_COUNT:
+      return {
+        ...state,
+        selectedRecipe: {
+          ...state.selectedRecipe,
+          likeCount: payload.count
         }
       }
     case t.LIKE_REQUEST:
