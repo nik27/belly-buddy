@@ -12,10 +12,10 @@ import { store, persistor } from './redux'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.less'
 
-// axios.defaults.baseURL =
-//   'https://europe-west3-belly-buddy-bf3e1.cloudfunctions.net/api'
 axios.defaults.baseURL =
-  'http://localhost:5001/belly-buddy-bf3e1/europe-west3/api'
+  'https://europe-west3-belly-buddy-bf3e1.cloudfunctions.net/api'
+// axios.defaults.baseURL =
+//   'http://localhost:5001/belly-buddy-bf3e1/europe-west3/api'
 
 axios.defaults.headers['Content-Type'] = 'application/json'
 
